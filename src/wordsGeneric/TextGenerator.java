@@ -110,7 +110,7 @@ public class TextGenerator {
                 }
             }			// (for debug) print resulting <StringPair,FreqList> map
             for (Map.Entry<StringPair, FreqList> entry : tg.letPairList.entrySet()) {
-                System.out.println(entry.getKey() + " -> " + entry.getValue());
+                System.out.println(entry.getKey() + "=" + entry.getValue());
             }
 			// (for debug) add a few getNextWord test cases
             System.out.println(tg.getNextWord("the", "cat"));
