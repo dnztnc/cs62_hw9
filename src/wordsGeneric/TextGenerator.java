@@ -124,14 +124,17 @@ public class TextGenerator {
             System.out.print(first + " "+second + " ");
             for (int i = 0; i < 400; i++) {
                 String nextWord = tg.getNextWord(first, second);
-                /*if (nextWord.equals("")) {
+                if (nextWord.equals("")) {
                      // randomly pick a simple word pair to continue from if we get stuck
                     Random random = new Random();
-                    int index = random.nextInt(7); // assuming we have 7 simple pairs
-                    String[] simpleWords = { "and", "the", "a", "an", "in", "on", "at" };
+                    int index = random.nextInt(15); // assuming we have 15 simple pairs
+                    String[] simpleWords = {"how", "are", "you", "are" , "we" , "is" , "it" , "i", "and", "the", "a", "an", "in", "on", "at" };
                     nextWord = simpleWords[index];
-                }*/
+                }
                 System.out.print(nextWord + " ");
+                if (i % 20 == 19) {
+                    System.out.println(); // new line every 20 words for readability
+                }
                 first = second;
                 second = nextWord;
             }
