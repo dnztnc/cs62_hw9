@@ -1,6 +1,6 @@
 /**
  * Frequency List of word/# of occurrence pairs
- * @author NAME GOES HERE!!
+ * @author Deniz Tanaci
  **/
  
 package wordsGeneric;
@@ -12,12 +12,15 @@ import java.util.Set;
 public class FreqList {
     // list of associations holding words and their frequencies
     protected HashMap<String, Integer> flist;
-
+    int totalCount = 0; // total number of references in this list (sum of counts)
 	/**
 	 * constructor
 	 */
     public FreqList() {
-		// TODO implement FreqList constructor
+		// implement FreqList constructor
+          flist = new HashMap<String, Integer>();
+
+
     }
     
     /** 
@@ -26,7 +29,13 @@ public class FreqList {
      * @param word ... reference to add
      */
     public void add(String word) {
-		// TODO implement FreqList.add()
+		// implement FreqList.add()
+        if (flist.containsKey(word)) {
+            flist.put(word, flist.get(word) + 1);
+        } else {
+            flist.put(word, 1);
+        }
+        totalCount++;
     }
 
     /**
@@ -38,8 +47,15 @@ public class FreqList {
      *		proportional to the number of times it has been referenced.
      */
     public String get(double p) {
-		// TODO implement FreqList.get()
-    	return "";
+		// implement FreqList.get()
+        double cumulativeProbability = 0.0;
+        for (String word : flist.keySet()) {
+            cumulativeProbability += (double) flist.get(word) / totalCount;
+            if (p < cumulativeProbability) {
+                return word;
+            }
+        }
+        return ""; // if p is not between 0 and 1
     }
 
     /**
@@ -48,8 +64,15 @@ public class FreqList {
      * 			e.g. "the=4, story=2, ..."
      */
     public String toString() {
-		// TODO implement FreqList.toString()
-    	return "";
+		// implement FreqList.toString()
+    String result = "";
+      for (String word : flist.keySet()) {
+          result += word + "=" + flist.get(word) + ", ";
+      }
+      if (result.length() > 0) {
+        result = result.substring(0, result.length() - 2); // remove last comma and space
+      }
+    	return result;
     }
     
     /**
@@ -62,6 +85,26 @@ public class FreqList {
      * 		call p multiple times to confirm distribution of results
      */
     public static void main(String args[]) {
-		// TODO: implement FreqList.main tester
+		// implement FreqList.main tester
+        FreqList freqList = new FreqList();
+        freqList.add("the");
+        freqList.add("the");
+        freqList.add("story");
+        freqList.add("story");
+        freqList.add("is");
+        System.out.println(freqList.toString());
+
+        // Test get method
+        int trials = 10000;
+        HashMap<String, Integer> results = new HashMap<String, Integer>();
+        for (int i = 0; i < trials; i++) {
+            String word = freqList.get(Math.random());
+            results.put(word, results.getOrDefault(word, 0) + 1);
+        }
+        System.out.println("Distribution of results after " + trials + " trials:");
+        for (String word : results.keySet()) {
+            System.out.println(word + ": " + results.get(word));
+
+        }//of our 10000 attemps, we should have approximately 4000 the, 4000 story, and 2000 is
     }
 }
