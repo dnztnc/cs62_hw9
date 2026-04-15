@@ -65,9 +65,9 @@ public class FreqList {
      */
     public String toString() {
 		// implement FreqList.toString()
-    String result = "";
+    String result = "Frequency List: ";
       for (String word : flist.keySet()) {
-          result += word + "=" + flist.get(word) + ", ";
+          result += "<" + word + "=" + flist.get(word) + ">";
       }
       if (result.length() > 0) {
         result = result.substring(0, result.length() - 2); // remove last comma and space
