@@ -2,7 +2,7 @@
  * Class to artificially generate sentences
  * 
  * Fix these comments!!
- * @author NAME GOES HERE!!
+ * @author Deniz Tanaci
  **/
 package wordsGeneric;
 

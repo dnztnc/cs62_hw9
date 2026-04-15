@@ -6,6 +6,10 @@
  * still more lexical items to be obtained from the wordstream.
  *
  */
+/**
+ * @author Deniz Tanaci
+ **/
+
 package wordsGeneric;
 
 import java.util.ArrayList;
